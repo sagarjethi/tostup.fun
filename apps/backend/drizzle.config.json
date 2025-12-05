@@ -1,0 +1,9 @@
+{
+    "out": "./drizzle",
+    "schema": "./src/database/schema.ts",
+    "breakpoints": true,
+    "dialect": "sqlite",
+    "dbCredentials": {
+        "url": "./tost_ai.db"
+    }
+}
