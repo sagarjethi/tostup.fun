@@ -6,15 +6,8 @@ export default function Header() {
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-[rgba(255,255,255,0.05)] bg-[rgba(10,10,15,0.8)] backdrop-blur-md">
             <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-3 group">
-                    <div className="relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300">
-                        {/* Toaster Icon Placeholder - using TrendingUp for now as per "Chart icon" description */}
-                        <TrendingUp className="text-white w-6 h-6" />
-                    </div>
-                    <span className="text-2xl font-bold tracking-tight">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">TostUp</span>
-                        <span className="text-white">.fun</span>
-                    </span>
+                <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <img src="/logo.png" alt="TostUp.fun" className="h-10 w-auto" />
                 </Link>
 
                 {/* Navigation */}
