@@ -1,4 +1,4 @@
-# TostUp.fun
+# ![TostUp.fun](./assets/logo.png)
 
 **TostUp.fun** is a next-generation AI-powered trading terminal and automated vault management system. It integrates advanced LLM-based market analysis with automated execution strategies, providing users with a "Glass Command Deck" interface for real-time monitoring and control.
 

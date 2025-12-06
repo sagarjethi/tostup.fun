@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { TrendingUp } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useQuery } from '@tanstack/react-query';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
 import { ChatsList } from './ChatsList';
 import { LiveFeedView } from './LiveFeedView';
 import { AssetsPanel } from './dashboard/AssetsPanel';
@@ -68,8 +66,8 @@ export default function Dashboard() {
 
     const equity = accountData?.equity || 0;
     const positions = positionsData || [];
-    // Use connected wallet address or API wallet address
-    const walletAddress = address || accountData?.walletAddress || null;
+    // Use API wallet address
+    const walletAddress = accountData?.walletAddress || null;
 
     return (
         <div className="min-h-screen bg-[#050505] text-white p-4 font-sans selection:bg-cyan-500/30 overflow-hidden flex flex-col relative">
@@ -114,78 +112,6 @@ export default function Dashboard() {
                         ))}
                     </div>
                 </div>
-
-                {/* Wallet Button */}
-                <ConnectButton.Custom>
-                    {({
-                        account,
-                        chain,
-                        openAccountModal,
-                        openChainModal,
-                        openConnectModal,
-                        authenticationStatus,
-                        mounted,
-                    }) => {
-                        const ready = mounted && authenticationStatus !== 'loading';
-                        const connected =
-                            ready &&
-                            account &&
-                            chain &&
-                            (!authenticationStatus ||
-                                authenticationStatus === 'authenticated');
-
-                        return (
-                            <div
-                                {...(!ready && {
-                                    'aria-hidden': true,
-                                    'style': {
-                                        opacity: 0,
-                                        pointerEvents: 'none',
-                                        userSelect: 'none',
-                                    },
-                                })}
-                            >
-                                {(() => {
-                                    if (!connected) {
-                                        return (
-                                            <button
-                                                onClick={openConnectModal}
-                                                type="button"
-                                                className="flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold transition-all backdrop-blur-md bg-white/5 border-white/10 text-white hover:bg-white/10"
-                                            >
-                                                <div className="w-2 h-2 rounded-full bg-gray-400" />
-                                                CONNECT WALLET
-                                            </button>
-                                        );
-                                    }
-
-                                    if (chain.unsupported) {
-                                        return (
-                                            <button
-                                                onClick={openChainModal}
-                                                type="button"
-                                                className="flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold transition-all backdrop-blur-md bg-red-500/20 border-red-500/50 text-red-400 hover:bg-red-500/30"
-                                            >
-                                                Wrong network
-                                            </button>
-                                        );
-                                    }
-
-                                    return (
-                                        <button
-                                            onClick={openAccountModal}
-                                            type="button"
-                                            className="flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold transition-all backdrop-blur-md bg-emerald-500/20 border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/30"
-                                        >
-                                            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                            {account.displayName}
-                                        </button>
-                                    );
-                                })()}
-                </div>
-                        );
-                    }}
-                </ConnectButton.Custom>
             </header>
 
             {/* Main Interface Content */}

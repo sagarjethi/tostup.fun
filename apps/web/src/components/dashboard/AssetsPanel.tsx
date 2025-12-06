@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { Radio } from 'lucide-react';
-import { useAccount } from 'wagmi';
 
 interface Position {
     symbol: string;
@@ -12,8 +11,7 @@ interface Position {
 }
 
 export const AssetsPanel = ({ positions, equity, walletAddress }: { positions: Position[], equity: number, walletAddress?: string }) => {
-    const { address: connectedAddress } = useAccount();
-    const displayAddress = walletAddress || connectedAddress || 'Not Connected';
+    const displayAddress = walletAddress || 'Not Available';
     return (
         <div className="h-full flex flex-col bg-[#0A0A0F] border border-white/10 rounded-xl overflow-hidden">
             {/* Header */}
